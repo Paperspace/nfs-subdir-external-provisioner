@@ -79,7 +79,7 @@ podSecurityContext: {}
 securityContext: {}
 
 serviceAccount:
-  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created.
   create: true
 
   # Annotations to add to the service account
@@ -96,6 +96,16 @@ resources: {}
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+hostPathVolume:
+  name: nfs-mount
+  path: /mnt/volumes/
+  type: DirectoryOrCreate
+
+hostPathVolumeMount:
+  mountPath: /mnt/volumes/
+  name: nfs-mount
+  mountPropagation: "Bidirectional"
 
 nodeSelector: {}
 
