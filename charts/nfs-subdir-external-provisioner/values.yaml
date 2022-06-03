@@ -79,7 +79,7 @@ podSecurityContext: {}
 securityContext: {}
 
 serviceAccount:
-  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created.
   create: true
 
   # Annotations to add to the service account
