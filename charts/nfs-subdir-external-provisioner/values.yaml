@@ -97,6 +97,16 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
+hostPathVolume:
+  name: nfs-mount
+  path: /mnt/volumes/
+  type: DirectoryOrCreate
+
+hostPathVolumeMount:
+  mountPath: /mnt/volumes/
+  name: nfs-mount
+  mountPropagation: "Bidirectional"
+
 nodeSelector: {}
 
 tolerations: []
