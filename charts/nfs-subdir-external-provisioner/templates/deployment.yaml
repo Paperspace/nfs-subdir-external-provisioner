@@ -50,6 +50,11 @@ spec:
           volumeMounts:
             - name: {{ .Values.nfs.volumeName }}
               mountPath: /persistentvolumes
+            {{- if .Values.hostPathMount }}
+            - name: {{ .Values.hostPathMount.name }}
+              mountPath: {{ .Values.hostPathMount.mountPath }}
+              mountPropagation: {{ .Values.hostPathMount.mountPropagation }}
+            {{- end }}
           env:
             - name: PROVISIONER_NAME
               value: {{ template "nfs-subdir-external-provisioner.provisionerName" . }}
@@ -66,6 +71,12 @@ spec:
 {{ toYaml . | indent 12 }}
           {{- end }}
       volumes:
+        {{- if .Values.hostPathVolume }}
+        - name: {{ .Values.hostPathVolume.name }}
+          hostPath:
+            path: {{ .Values.hostPathVolume.path }}
+            type: {{ .Values.hostPathVolume.type }}
+        {{- end }}
         - name: {{ .Values.nfs.volumeName }}
 {{- if .Values.buildMode }}
           emptyDir: {}
